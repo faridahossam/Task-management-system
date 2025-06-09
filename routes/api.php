@@ -8,12 +8,17 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:api');
 Route::post('/login', 'App\Http\Controllers\AuthController@authenticate');
 
-Route::group(['middleware' => ['auth:api']], function () {
-    // Route::get('/tasks', 'App\Http\Controllers\Api\TaskController@index');
-    // Route::post('/tasks', 'App\Http\Controllers\Api\TaskController@store');
-    // Route::get('/tasks/{task}', 'App\Http\Controllers\Api\TaskController@show');
-    // Route::put('/tasks/{task}', 'App\Http\Controllers\Api\TaskController@update');
-    // Route::delete('/tasks/{task}', 'App\Http\Controllers\Api\TaskController@destroy');
+Route::group([
+    'middleware' => ['auth:api'], //authentication check
+    'namespace' => 'App\Http\Controllers\Api', // default namespace for api routes
+], function () {
+    //Manager Tasks routes
+    Route::post('/tasks', 'Manager\TaskController@store');
+    //User Tasks routes
+    Route::get('/tasks', 'User\TaskController@index');
+    Route::get('/tasks/{task}', 'User\TaskController@show');
+    Route::patch('/tasks/{task}', 'User\TaskController@update');
 
-    Route::get('/statuses', 'App\Http\Controllers\Api\StatusController@index');
+    // get all statuses
+    Route::get('/statuses', 'StatusController@index');
 });
