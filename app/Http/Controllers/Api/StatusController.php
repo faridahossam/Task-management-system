@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\StatusResource;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller
@@ -16,7 +17,7 @@ class StatusController extends Controller
         $statuses = \App\Models\Status::all();
 
         // Return the statuses as a JSON response
-        return response()->json($statuses);
+        return StatusResource::collection($statuses);
     }
 
     /**

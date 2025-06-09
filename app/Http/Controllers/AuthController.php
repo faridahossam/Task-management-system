@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
 use Laravel\Passport\Passport;
 
 class AuthController extends Controller
@@ -18,7 +19,7 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Login successful',
                 'data' => [
-                    'user' => $user,
+                    'user' => new UserResource($user),
                     'token' => $token->accessToken,
                     'expires_at' => $token->token->expires_at,
                 ],
