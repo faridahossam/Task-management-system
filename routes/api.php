@@ -14,6 +14,7 @@ Route::group([
 ], function () {
     //Manager Tasks routes
     Route::post('/tasks', 'Manager\TaskController@store');
+    Route::patch('/tasks/{task}/update', 'Manager\TaskController@update');
     //User Tasks routes
     Route::get('/tasks', 'User\TaskController@index');
     Route::get('/tasks/{task}', 'User\TaskController@show');

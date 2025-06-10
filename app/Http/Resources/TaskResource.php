@@ -23,6 +23,13 @@ class TaskResource extends JsonResource
             'user' => new UserResource($this->whenLoaded('user')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'created_by' => new UserResource($this->creator),
+            'dependencies_ids' => $this->whenLoaded('dependencies', function () {
+                return $this->dependencies->map(fn ($task) => [
+                    'id' => $task->id,
+                    'title' => $task->title,
+                    'due_date' => $task->due_date,
+                ]);
+            }),
         ];
     }
 }

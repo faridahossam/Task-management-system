@@ -27,6 +27,7 @@ class UpdateTaskData extends FormRequest
             'start_date' => 'date|nullable',
             'due_date' => 'date',
             'user_id' => 'integer|exists:users,id',
+            'dependencies_ids' => 'array|exists:tasks,id|nullable',
         ];
     }
 }

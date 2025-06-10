@@ -27,6 +27,7 @@ class CreateTask extends FormRequest
             'start_date' => 'date|nullable',
             'due_date' => 'required|date',
             'user_id' => 'integer|required|exists:users,id',
+            'dependencies_ids' => 'array|exists:tasks,id|nullable',
         ];
     }
 }
