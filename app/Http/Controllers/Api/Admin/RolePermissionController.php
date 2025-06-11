@@ -7,6 +7,7 @@ use App\Http\Requests\CreateRole;
 use App\Http\Requests\UpdateRole;
 use App\Http\Resources\RoleResource;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RolePermissionController extends Controller
@@ -25,7 +26,7 @@ class RolePermissionController extends Controller
     public function store(CreateRole $request)
     {
         $requestData = $request->validated();
-        $role = RamedaRole::create(['name' => $requestData['name'], 'guard-name' => 'api']);
+        $role = Role::create(['name' => $requestData['name'], 'guard-name' => 'api']);
         if ($requestData['permissions_ids']) {
             $permission_ids = $requestData['permissions_ids'];
             foreach ($permission_ids as $id) {
