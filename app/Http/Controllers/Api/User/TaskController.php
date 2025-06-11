@@ -22,7 +22,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return $this->taskService->getCurrentUserTasks();
+        return $this->taskService->getTasks();
     }
 
     /**
@@ -37,7 +37,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return $this->taskService->getUserSingleTask($task);
+        return $this->taskService->getSingleTask($task);
     }
 
     /**

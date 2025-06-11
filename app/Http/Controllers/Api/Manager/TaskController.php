@@ -23,7 +23,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return $this->taskService->getallTasks();
+        return $this->taskService->getTasks();
     }
 
     /**
